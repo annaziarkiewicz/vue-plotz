@@ -8,22 +8,25 @@ export const usePlotzScores = () => {
 	const storageKey = 'vue-plotz'
 	const maxItems = 8
 
+	const sortScores = (list: ScoreItem[]): ScoreItem[] =>
+		[...list].sort((a, b) => {
+			if (b.score !== a.score) return b.score - a.score
+
+			return a.date - b.date
+		})
+
 	const getScores = (): ScoreItem[] => {
 		try {
 			const raw = localStorage.getItem(storageKey)
 			const data: ScoreItem[] = raw ? JSON.parse(raw) : []
 
-			return data.sort((a, b) => {
-				if (b.score !== a.score) return b.score - a.score
-
-				return a.date - b.date
-			})
+			return sortScores(data)
 		} catch {
 			return []
 		}
 	}
 
-	const saveScores = (list: ScoreItem[]) => {
+	const saveScores = (list: ScoreItem[]): void => {
 		localStorage.setItem(storageKey, JSON.stringify(list))
 	}
 
@@ -39,7 +42,10 @@ export const usePlotzScores = () => {
 		return score > last.score
 	}
 
-	const addScore = (item: { name: string; score: number }) => {
+	const addScore = (item: {
+		name: string
+		score: number
+	}): void => {
 		const list = getScores()
 
 		const next: ScoreItem[] = [
@@ -50,13 +56,7 @@ export const usePlotzScores = () => {
 			}
 		]
 
-		const sorted = next
-			.sort((a, b) => {
-				if (b.score !== a.score) return b.score - a.score
-
-				return a.date - b.date
-			})
-			.slice(0, maxItems)
+		const sorted = sortScores(next).slice(0, maxItems)
 
 		saveScores(sorted)
 	}
