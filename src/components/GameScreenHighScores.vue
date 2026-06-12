@@ -23,6 +23,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+
 import { usePlotzScores } from '@/composables/usePlotzScores'
 
 const emit = defineEmits<{
@@ -124,7 +125,7 @@ const scores = computed(() => getScores())
 		display: flex;
 		justify-content: center;
 		align-items: center;
-        flex-shrink: 0;
+		flex-shrink: 0;
 		background: $color-milk-300;
 		border-radius: 8px;
 		font-size: 15px;
@@ -133,12 +134,12 @@ const scores = computed(() => getScores())
 	}
 
 	&__name {
-        overflow: hidden;
-        min-width: 0;
+		overflow: hidden;
+		min-width: 0;
 		flex-grow: 1;
 		font-size: 18px;
 		color: $color-milk-300;
-        text-transform: uppercase;
+		text-transform: uppercase;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
