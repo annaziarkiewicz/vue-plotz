@@ -18,12 +18,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const emit = defineEmits(['close', 'submit'])
+const emit = defineEmits<{
+	(e: 'close'): void
+	(e: 'submit', name: string): void
+}>()
 
 defineProps<{
-	heading: string,
+	heading: string
 	placeholder: string
 }>()
 
@@ -108,7 +111,7 @@ const handleClose = () => {
 			font-size: 24px;
 			font-weight: 500;
 			line-height: 1em;
-            text-align: center;
+			text-align: center;
 
 			&::placeholder {
 				font-weight: 400;
