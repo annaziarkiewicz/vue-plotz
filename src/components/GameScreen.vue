@@ -1,9 +1,5 @@
 <template>
     <section class="az-screen">
-        <div v-if="$slots.illustrations" class="az-screen__illustrations">
-            <slot name="illustrations" />
-        </div>
-
         <div class="az-screen__content">
             <div v-if="gameHeadline" class="az-screen__heading">
                 {{ gameHeadline }}
@@ -44,7 +40,9 @@
             </div>
         </div>
 
-        <GameScreenAuthor/>
+        <GameScreenAuthor />
+
+        <slot name="illustrations" />
 
         <slot/>
     </section>
@@ -85,13 +83,6 @@ const hasAnyActions = computed(() => props.buttonPlayGame || props.buttonBackToG
     align-items: center;
     justify-content: center;
     background: $color-milk-200;
-
-    &__illustrations {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-    }
 
     &__content {
         position: relative;
