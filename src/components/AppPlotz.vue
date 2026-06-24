@@ -56,7 +56,7 @@
 			<template #illustrations>
 				<div class="az-illustration az-illustration--mint" />
 				<div class="az-illustration az-illustration--rose" />
-            </template>
+			</template>
 
 			<GameScreenHighScores
 				v-if="gameState.screen === 'highScores'"
@@ -110,7 +110,7 @@ const score = ref<Score>({
 	playerColumns: 0,
 	target: 10
 })
-const time = ref(0)
+const time = ref(30)
 
 const { addScore, isHighScore } = usePlotzScores()
 
@@ -132,7 +132,7 @@ const resetScore = () => {
 	}
 
 	rankingScore.value = 0
-	time.value = 0
+	time.value = 30
 	currentTurn.value = 'player'
 }
 

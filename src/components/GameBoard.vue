@@ -91,8 +91,8 @@ watch(game.currentTurn, () => {
 	emit('update:turn', game.currentTurn.value)
 }, { immediate: true })
 
-watch(game.time, () => {
-	emit('update:time', game.time.value)
+watch(game.turnTime, () => {
+	emit('update:time', game.turnTime.value)
 }, { immediate: true })
 
 watch(game.winner, () => {
