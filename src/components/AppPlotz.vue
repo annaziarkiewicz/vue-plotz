@@ -3,6 +3,7 @@
 		<GameDashboard
 			:current-turn="currentTurn"
 			:score="score"
+            :show-overlay="gameState.screen === 'game'"
 			:time="time"
 		/>
 

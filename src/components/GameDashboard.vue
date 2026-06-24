@@ -1,27 +1,22 @@
 <template>
 	<div class="az-dashboard">
 		<div class="az-dashboard__start">
-			Score: {{ score.player }}%
-			<span>({{ score.playerColumns }} columns)</span>
+			Columns: {{ score.playerColumns }} | Score: {{ score.player }}
 		</div>
 
 		<div class="az-dashboard__center">
 			<GameDashboardTurn :current-turn="currentTurn" />
 
 			<div
-				v-if="currentTurn === 'ai'"
+				v-if="showOverlay"
 				class="az-dashboard__center-overlay"
 			>
-				AI score: {{ score.ai }}%
-				<span>({{ score.aiColumns }} columns)</span>
+                AI columns: {{ score.aiColumns }} |  Score: {{ score.ai }}
 			</div>
 		</div>
 
 		<div class="az-dashboard__end">
-			<GameDashboardTimer
-				align="center"
-				:time="time"
-			/>
+			<GameDashboardTimer label="Time left" :time="time" />
 		</div>
 	</div>
 </template>
@@ -36,6 +31,7 @@ defineProps<{
 	currentTurn: Turn
 	score: Score
 	time: number
+    showOverlay: boolean
 }>()
 </script>
 
@@ -53,10 +49,6 @@ defineProps<{
 
 	&__start {
 		justify-self: start;
-
-		span {
-			color: $color-milk-500;
-		}
 	}
 
 	&__center {
@@ -64,10 +56,10 @@ defineProps<{
 
 		&-overlay {
 			position: absolute;
-			left: 0;
-			right: 0;
-			z-index: 1;
-			height: 24px;
+            top: 24px;
+            inset-inline: 0;
+            z-index: 1;
+            height: 24px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
