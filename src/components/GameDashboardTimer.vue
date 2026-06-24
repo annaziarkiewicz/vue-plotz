@@ -3,7 +3,7 @@
 		class="az-timer"
 		:class="`az-timer--${align}`"
 	>
-		Time: {{ formattedTime }}
+		{{ label }}: {{ formattedTime }}
 	</div>
 </template>
 
@@ -15,8 +15,10 @@ type Align = 'left' | 'center' | 'right'
 const props = withDefaults(defineProps<{
 	time: number
 	align?: Align
+    label?: string
 }>(), {
-	align: 'right'
+	align: 'right',
+    label: 'Time'
 })
 
 const formattedTime = computed(() => {
