@@ -1,10 +1,14 @@
 <template>
 	<section class="az-high-scores">
 		<div class="az-high-scores__heading">High Scores</div>
-		<div class="az-high-scores__close" @click="emit('close')">✕</div>
+		<button class="az-high-scores__close" @click="emit('close')">✕</button>
 
-		<ul>
-			<li v-for="index in maxItems" :key="index">
+		<ul class="az-high-scores__list">
+			<li
+				v-for="index in maxItems"
+				:key="index"
+				class="az-high-scores__item"
+			>
 				<div class="az-high-scores__number">
 					{{ String(index).padStart(2, '0') }}
 				</div>
@@ -71,19 +75,20 @@ const scores = computed(() => getScores())
 		cursor: pointer;
 		background: $color-rose-200;
 		color: $color-milk-200;
+		transition: 0.5s;
 
 		&:hover {
 			background: $color-rose-300;
 		}
 	}
 
-	ul {
+	&__list {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 	}
 
-	li {
+	&__item {
 		width: 480px;
 		padding: 8px;
 		display: flex;
@@ -94,26 +99,26 @@ const scores = computed(() => getScores())
 		border: 1px solid #D9D9D4;
 
 		&:nth-child(1) {
-			[class$='number'] {
+			.az-high-scores__number {
 				background: $color-mint-300;
 			}
 		}
 
 		&:nth-child(2) {
-			[class$='number'] {
+			.az-high-scores__number {
 				background: $color-rose-200;
 			}
 		}
 
 		&:nth-child(3) {
-			[class$='number'] {
+			.az-high-scores__number {
 				background: $color-navy-200;
 			}
 		}
 
 		&:nth-child(-n+3) {
-			[class$='name'],
-			[class$='points'] {
+			.az-high-scores__name,
+			.az-high-scores__points {
 				color: $color-milk-500;
 			}
 		}
