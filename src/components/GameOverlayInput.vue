@@ -1,11 +1,12 @@
 <template>
 	<section class="az-overlay">
 		<div class="az-overlay__heading">{{ heading }}</div>
-		<div class="az-overlay__close" @click="handleClose">✕</div>
+		<button class="az-overlay__close" @click="handleClose">✕</button>
 
 		<div class="az-overlay__field">
 			<input
 				ref="gameInputRef"
+				class="az-overlay__input"
 				v-model="name"
 				type="text"
 				:maxlength="maxLength"
@@ -88,6 +89,7 @@ const handleClose = () => {
 		background: $color-milk-200;
 		border-radius: 50%;
 		color: $color-milk-500;
+		transition: 0.5s;
 
 		&:hover {
 			background: $color-milk-100;
@@ -100,23 +102,23 @@ const handleClose = () => {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
 
-		input {
-			width: 75%;
-			background: $color-milk-300;
-			box-shadow: 0 0 96px 0 $color-grey-400;
-			border: 4px solid $color-milk-200;
-			border-radius: 32px;
-			padding: 20px 24px;
-			font-size: 24px;
-			font-weight: 500;
-			line-height: 1em;
-			text-align: center;
+	&__input {
+		width: 75%;
+		background: $color-milk-300;
+		box-shadow: 0 0 96px 0 $color-grey-400;
+		border: 4px solid $color-milk-200;
+		border-radius: 32px;
+		padding: 20px 24px;
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 1em;
+		text-align: center;
 
-			&::placeholder {
-				font-weight: 400;
-				color: $color-grey-200;
-			}
+		&::placeholder {
+			font-weight: 400;
+			color: $color-grey-200;
 		}
 	}
 }
