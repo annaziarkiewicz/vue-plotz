@@ -13,22 +13,19 @@ import { computed } from 'vue'
 type Align = 'left' | 'center' | 'right'
 
 const props = withDefaults(defineProps<{
-	time: number
 	align?: Align
-    label?: string
+	label?: string
+	time: number
 }>(), {
 	align: 'right',
-    label: 'Time'
+	label: 'Time'
 })
 
 const formattedTime = computed(() => {
-	const minutes = Math.floor(props.time / 60)
-	const seconds = props.time % 60
+	const minutes = String(Math.floor(props.time / 60)).padStart(2, '0')
+	const seconds = String(props.time % 60).padStart(2, '0')
 
-	const mm = String(minutes).padStart(2, '0')
-	const ss = String(seconds).padStart(2, '0')
-
-	return `${mm}:${ss}`
+	return `${minutes}:${seconds}`
 })
 </script>
 
